@@ -14,6 +14,7 @@ APT_PACKAGES=(
     openssh-client
     socat
     tcpdump
+    traceroute
     wget
 )
 
