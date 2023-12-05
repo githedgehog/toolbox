@@ -12,6 +12,7 @@ APT_PACKAGES=(
     iputils-ping
     net-tools
     openssh-client
+    screen
     socat
     tcpdump
     traceroute
