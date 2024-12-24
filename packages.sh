@@ -17,6 +17,7 @@ APT_PACKAGES=(
     tcpdump
     traceroute
     wget
+    lldpd
 )
 
 apt-get update -y \
