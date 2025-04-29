@@ -21,6 +21,7 @@ APT_PACKAGES=(
     curl
     wget
     pciutils
+    ca-certificates
 )
 
 apt-get update -y \
