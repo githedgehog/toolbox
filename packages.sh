@@ -22,6 +22,9 @@ APT_PACKAGES=(
     wget
     pciutils
     ca-certificates
+    tshark
+    perftest
+    ethtool
 )
 
 apt-get update -y \
