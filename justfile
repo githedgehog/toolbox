@@ -42,7 +42,7 @@ oci_fabricator_prefix := "githedgehog/fabricator"
 # Build all artifacts
 build: _license_headers gen _gotools && version
   {{go_linux_build}} -o ./bin/version ./cmd/version
-  {{go_linux_build}} -o ./bin/echo ./cmd/echo
+  {{go_linux_build}} -o ./bin/demo ./cmd/demo
   docker build --platform=linux/amd64 -t {{oci_repo}}/{{oci_prefix}}:{{version}} -f Dockerfile .
 
 # Push all toolbox image

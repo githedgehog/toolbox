@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	fmt.Println("Echo server", version.Version)
+	fmt.Println("Demo server", version.Version)
 
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
@@ -28,7 +28,7 @@ func main() {
 
 		if f, ok := w.(http.Flusher); ok {
 			for {
-				_, _ = w.Write([]byte(fmt.Sprintf("Echo from %s to %s\n", r.Host, r.RemoteAddr)))
+				_, _ = w.Write([]byte(fmt.Sprintf("Request from %s to %s\n", r.Host, r.RemoteAddr)))
 				f.Flush()
 
 				time.Sleep(1 * time.Second)
