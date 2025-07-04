@@ -35,14 +35,13 @@ go_linux_build := "GOOS=linux GOARCH=amd64 " + go_build
 gen:
   # noop
 
-echo-build: _license_headers _gotools gen && version
-  {{go_linux_build}} -o ./bin/echo ./cmd/echo
-
 oci_repo := "127.0.0.1:30000"
 oci_prefix := "githedgehog/toolbox"
 
 # Build all artifacts
-build: _license_headers gen _gotools echo-build && version
+build: _license_headers gen _gotools && version
+  {{go_linux_build}} -o ./bin/version ./cmd/version
+  {{go_linux_build}} -o ./bin/echo ./cmd/echo
   docker build --platform=linux/amd64 -t {{oci_repo}}/{{oci_prefix}}:{{version}} -f Dockerfile .
 
 # Push all toolbox image
