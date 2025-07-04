@@ -42,11 +42,13 @@ oci_prefix := "githedgehog/toolbox"
 build: _license_headers gen _gotools && version
   {{go_linux_build}} -o ./bin/version ./cmd/version
   {{go_linux_build}} -o ./bin/echo ./cmd/echo
-  docker build --platform=linux/amd64 -t {{oci_repo}}/{{oci_prefix}}:{{version}} -f Dockerfile .
+  docker build --platform=linux/amd64 -t {{oci_repo}}/{{oci_prefix}}/toolbox:{{version}} -f Dockerfile .
 
 # Push all toolbox image
-push: _skopeo build && version
-  {{skopeo}} --insecure-policy copy {{skopeo_copy_flags}} {{skopeo_dest_insecure}} docker-daemon:{{oci_repo}}/{{oci_prefix}}:{{version}} docker://{{oci_repo}}/{{oci_prefix}}:{{version}}
+push: _skopeo _oras build && version
+  {{skopeo}} --insecure-policy copy {{skopeo_copy_flags}} {{skopeo_dest_insecure}} docker-daemon:{{oci_repo}}/{{oci_prefix}}/toolbox:{{version}} docker://{{oci_repo}}/{{oci_prefix}}/toolbox:{{version}}
+  docker save -o toolbox.tar {{oci_repo}}/{{oci_prefix}}/toolbox:{{version}}
+  oras push {{oras_insecure}} {{oci_repo}}/{{oci_prefix}}/toolbox-airgap:{{version}} toolbox.tar
 
 # Run specified command with args with minimal Go flags (no version provided)
 run cmd *args:
