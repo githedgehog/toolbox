@@ -48,7 +48,9 @@ build: _license_headers gen _gotools && version
 # Push all toolbox image
 push: _skopeo _oras build && version
   {{skopeo}} --insecure-policy copy {{skopeo_copy_flags}} {{skopeo_dest_insecure}} docker-daemon:{{oci_repo}}/{{oci_prefix}}:{{version}} docker://{{oci_repo}}/{{oci_prefix}}:{{version}}
-  docker save -o toolbox.tar {{oci_repo}}/{{oci_prefix}}:{{version}}
+  docker image rm {{oci_repo}}/{{oci_prefix}}:latest || true
+  docker tag {{oci_repo}}/{{oci_prefix}}:{{version}} {{oci_repo}}/{{oci_prefix}}:latest
+  docker save -o toolbox.tar {{oci_repo}}/{{oci_prefix}}:latest
   oras push {{oras_insecure}} {{oci_repo}}/{{oci_fabricator_prefix}}/toolbox:{{version}} toolbox.tar
 
 # Run specified command with args with minimal Go flags (no version provided)
