@@ -28,6 +28,8 @@ APT_PACKAGES=(
     tshark
     perftest
     ethtool
+    lm-sensors
+    mstflint
 )
 
 apt-get update -y \
