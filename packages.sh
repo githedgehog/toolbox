@@ -30,6 +30,7 @@ APT_PACKAGES=(
     ethtool
     lm-sensors
     mstflint
+    btop
 )
 
 apt-get update -y \
