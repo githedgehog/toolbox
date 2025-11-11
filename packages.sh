@@ -31,6 +31,15 @@ APT_PACKAGES=(
     lm-sensors
     mstflint
     btop
+    dnsutils
+    lsof
+    tmux
+    strace
+    ltrace
+    arping
+    cpio
+    telnet
+    jq
 )
 
 apt-get update -y \
