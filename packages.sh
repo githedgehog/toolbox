@@ -40,6 +40,7 @@ APT_PACKAGES=(
     cpio
     telnet
     jq
+    less
 )
 
 apt-get update -y \
