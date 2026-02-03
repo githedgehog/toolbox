@@ -2,15 +2,13 @@
 # Copyright 2025 Hedgehog
 # SPDX-License-Identifier: Apache-2.0
 
-
 set -eux
 set -o pipefail
 
-APT_PACKAGES=(
+RUNTIME_APT_PACKAGES=(
     curl
     dhcping
     ethtool
-    iperf3
     iproute2
     iputils-ping
     net-tools
@@ -21,8 +19,6 @@ APT_PACKAGES=(
     traceroute
     wget
     vim
-    curl
-    wget
     pciutils
     ca-certificates
     tshark
@@ -45,7 +41,7 @@ APT_PACKAGES=(
 
 apt-get update -y \
     && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends --yes \
-    "${APT_PACKAGES[@]}" \
+    "${RUNTIME_APT_PACKAGES[@]}" \
     && apt-get clean autoclean \
     && apt-get autoremove --yes \
     && rm -rf /var/lib/apt/lists/*
