@@ -128,9 +128,10 @@ jobs:
     with:
       skip: ${{ github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'ci:-vlab') }}
       fabricatorref: master
-      prebuild: |
-        sed -i "s|Toolbox:[[:space:]]*\"[^\"]*\"|Toolbox: \"${{ needs.test.outputs.version }}\"|" pkg/fab/versions.go
-        go fmt pkg/fab/versions.go
+      # Single-line with no literal double quotes: run-vlab's Inputs summary step
+      # echoes prebuild inside "..." and breaks on embedded quotes. Use GNU sed
+      # \x22 for the Go string's double quotes.
+      prebuild: sed -ri 's@^\s*Toolbox:.*@\t\tToolbox:\x20\x22${{ needs.test.outputs.version }}\x22,@' pkg/fab/versions.go && go fmt pkg/fab/versions.go
       fabricmode: spine-leaf
       gateway: false
       includeonie: false
