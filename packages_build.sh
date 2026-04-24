@@ -20,7 +20,7 @@ apt-get update -y \
     "${BUILD_APT_PACKAGES[@]}" \
     && rm -rf /var/lib/apt/lists/*
 
-git clone --branch 3.20 https://github.com/esnet/iperf.git /tmp/iperf \
+git clone --branch 3.21 https://github.com/esnet/iperf.git /tmp/iperf \
     && cd /tmp/iperf \
     && ./configure \
     && make \
