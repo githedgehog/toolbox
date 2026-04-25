@@ -37,6 +37,7 @@ RUNTIME_APT_PACKAGES=(
     telnet
     jq
     less
+    xz-utils
 )
 
 apt-get update -y \
@@ -49,3 +50,13 @@ apt-get update -y \
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
     && chmod +x kubectl \
     && mv kubectl /usr/local/bin/
+
+CLOUDFLARE_SPEED_CLI_VERSION=v0.6.6
+CLOUDFLARE_SPEED_CLI_ARCHIVE=cloudflare-speed-cli-x86_64-unknown-linux-musl.tar.xz
+CLOUDFLARE_SPEED_CLI_BASE_URL=https://github.com/kavehtehrani/cloudflare-speed-cli/releases/download/${CLOUDFLARE_SPEED_CLI_VERSION}
+curl -fsSLO "${CLOUDFLARE_SPEED_CLI_BASE_URL}/${CLOUDFLARE_SPEED_CLI_ARCHIVE}" \
+    && curl -fsSLO "${CLOUDFLARE_SPEED_CLI_BASE_URL}/${CLOUDFLARE_SPEED_CLI_ARCHIVE}.sha256" \
+    && sha256sum -c "${CLOUDFLARE_SPEED_CLI_ARCHIVE}.sha256" \
+    && tar -xJf "${CLOUDFLARE_SPEED_CLI_ARCHIVE}" \
+    && install -m 0755 cloudflare-speed-cli-x86_64-unknown-linux-musl/cloudflare-speed-cli /usr/local/bin/cloudflare-speed-cli \
+    && rm -rf cloudflare-speed-cli-x86_64-unknown-linux-musl*
