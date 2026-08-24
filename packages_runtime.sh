@@ -9,6 +9,7 @@ RUNTIME_APT_PACKAGES=(
     curl
     dhcping
     ethtool
+    gdb
     iproute2
     iputils-ping
     net-tools
