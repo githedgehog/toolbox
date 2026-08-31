@@ -22,6 +22,8 @@ apt-get update -y \
 
 git clone --branch 3.21 https://github.com/esnet/iperf.git /tmp/iperf \
     && cd /tmp/iperf \
+    && sed -i 's/j = JSON_read(test->ctrl_sck, 0);/j = JSON_read(test->ctrl_sck, 1024 * 1024);/' src/iperf_api.c \
+    && grep -q 'JSON_read(test->ctrl_sck, 1024 \* 1024)' src/iperf_api.c \
     && ./configure \
     && make \
     && make install \
