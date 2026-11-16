@@ -39,6 +39,15 @@ RUNTIME_APT_PACKAGES=(
     jq
     less
     xz-utils
+    mtr-tiny
+    psmisc
+    file
+    smartmontools
+    ipmitool
+    hwloc-nox
+    numactl
+    sysstat
+    iotop-c
 )
 
 apt-get update -y \
