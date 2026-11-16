@@ -21,6 +21,7 @@ RUNTIME_APT_PACKAGES=(
     wget
     vim
     pciutils
+    dmidecode
     ca-certificates
     tshark
     perftest
