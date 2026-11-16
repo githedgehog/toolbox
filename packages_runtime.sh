@@ -25,7 +25,6 @@ RUNTIME_APT_PACKAGES=(
     ca-certificates
     tshark
     perftest
-    ethtool
     lm-sensors
     mstflint
     btop
