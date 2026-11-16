@@ -57,10 +57,6 @@ apt-get update -y \
     && apt-get autoremove --yes \
     && rm -rf /var/lib/apt/lists/*
 
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
-    && chmod +x kubectl \
-    && mv kubectl /usr/local/bin/
-
 # cpio instead of tar: 26.04's tar fails with ENOSYS under amd64 emulation (e.g. Apple Silicon)
 CLOUDFLARE_SPEED_CLI_VERSION=v0.6.6
 CLOUDFLARE_SPEED_CLI_ARCHIVE=cloudflare-speed-cli-x86_64-unknown-linux-musl.tar.xz
